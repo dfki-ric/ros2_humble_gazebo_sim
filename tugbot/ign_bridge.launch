@@ -13,4 +13,9 @@
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_scan"
     args="/world/world_demo/model/tugbot/link/scan_omni/sensor/scan_omni/scan/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked" />
 
+  <node pkg="robot_state_publisher" exec="robot_state_publisher">
+    <param name='robot_description' value="$(command 'cat model.sdf')"/>
+  </node>
+
 </launch>
+

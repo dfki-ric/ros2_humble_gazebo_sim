@@ -6,12 +6,15 @@
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_odom"
     args="/model/husky/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry" />
 
-  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_tf" args="/model/tugbot/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V">
+  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_tf" args="/model/husky/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V">
     <remap from="/model/husky/tf" to="/tf"/>
   </node>
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_scan"
     args="/world/cave_circuit_02/model/husky/link/base_link/sensor/front_laser/scan/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked" />
+
+  <node pkg="tf2_ros" exec="static_transform_publisher" name="laser_transform"
+    args="0.0012 0 0.716 0 0 0 /husky/base_link /husky/base_link/front_laser" />
 
 </launch>
 
