@@ -1,20 +1,47 @@
 <launch>
 
-  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_cmd"
-    args="/model/husky/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" />
+  <set_parameter name="use_sim_time" value="false" />
 
+  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_cmd"
+    args="/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" />
+<!--
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_odom"
     args="/model/husky/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry" />
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_tf" args="/model/husky/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V">
     <remap from="/model/husky/tf" to="/tf"/>
   </node>
+-->
+  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_tf" args="/model/husky/pose@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V">
+    <remap from="/model/husky/pose" to="/tf"/>
+  </node>
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_scan"
-    args="/world/cave_circuit_02/model/husky/link/base_link/sensor/front_laser/scan/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked" />
+    args="/world/gz/model/husky/link/base_link/sensor/front_laser/scan/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked" />
+
+  <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_clock"
+    args="/world/gz/clock@rosgraph_msgs/msg/Clock@ignition.msgs.Clock">
+    <remap from="/world/gz/clock" to="/clock" />
+  </node>
 
   <node pkg="tf2_ros" exec="static_transform_publisher" name="laser_transform"
     args="0.0012 0 0.716 0 0 0 /husky/base_link /husky/base_link/front_laser" />
 
+  <node pkg="joy" exec="joy_node" />
+
+  <node pkg="teleop_twist_joy" exec="teleop_node">
+    <param name="require_enable_button" value="false" />
+    <param name="axis_linear.x" value="1" />
+    <param name="axis_angular.x" value="0" />
+    <param name="scale_linear.x" value="2.0" />
+    <param name="scale_angular.yaw" value="2.0" />
+  </node>
+
+<!--
+  <node pkg="slam3d_ros2" exec="pointcloud_mapper" output="screen">
+    <remap from="/scan" to="/world/gz/model/husky/link/base_link/sensor/front_laser/scan/points" />
+    <param name="blub" value="narf" />
+  </node>
+-->
 </launch>
 
