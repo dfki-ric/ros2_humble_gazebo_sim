@@ -13,7 +13,8 @@
     </plugin>
     <plugin name='ignition::gazebo::systems::PosePublisher' filename='libignition-gazebo-pose-publisher-system'>
       <use_pose_vector_msg>true</use_pose_vector_msg>
-      <publish_nested_model_pose>true</publish_nested_model_pose>
+      <publish_nested_model_pose>false</publish_nested_model_pose>
+      <publish_sensor_pose>true</publish_sensor_pose>
     </plugin>
     <link name="base_link">
       <pose frame="">0 0 0 0 -0 0</pose>
