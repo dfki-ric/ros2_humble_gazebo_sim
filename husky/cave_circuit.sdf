@@ -1,5 +1,5 @@
 <sdf version='1.9'>
-  <world name='cave_circuit_02'>
+  <world name='gz'>
     <physics name='1ms' type='ode'>
       <max_step_size>0.0040000000000000001</max_step_size>
       <real_time_factor>1</real_time_factor>
