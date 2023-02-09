@@ -3,7 +3,7 @@
   <set_parameter name="use_sim_time" value="true" />
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_cmd"
-    args="/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" />
+    args="/model/husky/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" />
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_odom"
     args="/model/husky/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry" />
@@ -28,6 +28,7 @@
   <node pkg="joy" exec="joy_node" />
 
   <node pkg="teleop_twist_joy" exec="teleop_node">
+    <remap from="/cmd_vel" to="/model/husky/cmd_vel" />
     <param name="require_enable_button" value="false" />
     <param name="axis_linear.x" value="1" />
     <param name="axis_angular.x" value="0" />
