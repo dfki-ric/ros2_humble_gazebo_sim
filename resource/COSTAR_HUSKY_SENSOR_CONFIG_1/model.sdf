@@ -9,7 +9,6 @@
       <wheel_separation>0.5708</wheel_separation>
       <wheel_radius>0.1651</wheel_radius>
       <odom_publish_frequency>50</odom_publish_frequency>
-      <topic>cmd_vel</topic>
     </plugin>
     <plugin name='ignition::gazebo::systems::PosePublisher' filename='libignition-gazebo-pose-publisher-system'>
       <use_pose_vector_msg>true</use_pose_vector_msg>
