@@ -1,6 +1,6 @@
 <launch>
 
-  <set_parameter name="use_sim_time" value="true" />
+  <set_parameter name="use_sim_time" value="false" />
 
   <node pkg="ros_ign_bridge" exec="parameter_bridge" name="ign_bridge_cmd"
     args="/model/husky/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist" />
@@ -35,10 +35,10 @@
     <param name="scale_linear.x" value="2.0" />
     <param name="scale_angular.yaw" value="2.0" />
   </node>
-<!--
+
   <node pkg="slam3d_ros2" exec="pointcloud_mapper" output="screen">
     <remap to="/world/gz/model/husky/link/base_link/sensor/front_laser/scan/points" from="/scan" />
   </node>
--->
+
 </launch>
 
