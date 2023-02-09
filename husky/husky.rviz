@@ -6,9 +6,11 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /PointCloud21
         - /PointCloud21/Topic1
+        - /TF1
         - /TF1/Tree1
+        - /TF1/Tree1/husky/odom1
+        - /TF1/Tree1/husky1
         - /Odometry1/Topic1
         - /Map1/Topic1
       Splitter Ratio: 0.6247422695159912
@@ -84,9 +86,7 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
-        gz:
-          Value: true
+        All Enabled: false
         husky:
           Value: true
         husky/base_link:
@@ -94,6 +94,8 @@ Visualization Manager:
         husky/front_left_wheel_link:
           Value: true
         husky/front_right_wheel_link:
+          Value: true
+        husky/odom:
           Value: true
         husky/rear_left_wheel_link:
           Value: true
@@ -105,18 +107,18 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        gz:
-          husky:
-            husky/base_link:
-              {}
-            husky/front_left_wheel_link:
-              {}
-            husky/front_right_wheel_link:
-              {}
-            husky/rear_left_wheel_link:
-              {}
-            husky/rear_right_wheel_link:
-              {}
+        husky:
+          husky/front_left_wheel_link:
+            {}
+          husky/front_right_wheel_link:
+            {}
+          husky/rear_left_wheel_link:
+            {}
+          husky/rear_right_wheel_link:
+            {}
+        husky/odom:
+          husky/base_link:
+            {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.10000000149011612
@@ -193,7 +195,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: gz
+    Fixed Frame: husky
     Frame Rate: 30
   Name: root
   Tools:
@@ -233,7 +235,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.0885045528411865
+      Distance: 13.972122192382812
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -248,10 +250,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7853981852531433
+      Pitch: 0.7553980350494385
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.7853981852531433
+      Yaw: 2.615399122238159
     Saved:
       - Class: rviz_default_plugins/Orbit
         Distance: 29.192161560058594
