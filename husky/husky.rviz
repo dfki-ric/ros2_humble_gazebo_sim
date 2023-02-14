@@ -5,11 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /PointCloud21/Topic1
-        - /TF1/Tree1/odom1
-        - /TF1/Tree1/odom1/husky1/husky/base_link1
         - /Odometry1/Topic1
-        - /Map1
+        - /Map1/Autocompute Value Bounds1
       Splitter Ratio: 0.6247422695159912
     Tree Height: 787
   - Class: rviz_common/Selection
@@ -108,7 +105,7 @@ Visualization Manager:
           Value: true
         odom:
           Value: true
-      Marker Scale: 1
+      Marker Scale: 5
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -116,25 +113,6 @@ Visualization Manager:
       Tree:
         map:
           {}
-        odom:
-          husky:
-            husky/base_link:
-              husky/base_link/camera_front:
-                {}
-              husky/base_link/front_cliff_laser:
-                {}
-              husky/base_link/front_laser:
-                {}
-              husky/base_link/imu_sensor:
-                {}
-            husky/front_left_wheel_link:
-              {}
-            husky/front_right_wheel_link:
-              {}
-            husky/rear_left_wheel_link:
-              {}
-            husky/rear_right_wheel_link:
-              {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.10000000149011612
@@ -178,9 +156,9 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 15.366539001464844
-        Min Value: -0.1653803139925003
-        Value: true
+        Max Value: 8
+        Min Value: -2
+        Value: false
       Axis: Z
       Channel Name: intensity
       Class: rviz_default_plugins/PointCloud2
@@ -196,9 +174,9 @@ Visualization Manager:
       Name: Map
       Position Transformer: XYZ
       Selectable: true
-      Size (Pixels): 1
+      Size (Pixels): 2
       Size (m): 0.05000000074505806
-      Style: Squares
+      Style: Points
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -251,7 +229,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 51.88467788696289
+      Distance: 29.903579711914062
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -266,10 +244,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7853981852531433
+      Pitch: 1.0053982734680176
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.7853981852531433
+      Yaw: 2.505399227142334
     Saved:
       - Class: rviz_default_plugins/Orbit
         Distance: 29.192161560058594

@@ -32,8 +32,8 @@
     <param name="require_enable_button" value="false" />
     <param name="axis_linear.x" value="1" />
     <param name="axis_angular.x" value="0" />
-    <param name="scale_linear.x" value="2.0" />
-    <param name="scale_angular.yaw" value="2.0" />
+    <param name="scale_linear.x" value="0.5" />
+    <param name="scale_angular.yaw" value="0.5" />
   </node>
 
   <node pkg="slam3d_ros2" exec="pointcloud_mapper" output="screen">
