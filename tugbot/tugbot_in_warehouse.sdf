@@ -310,11 +310,6 @@
           </geometry>
           <material>
             <diffuse>1 1 1 1</diffuse>
-            <pbr>
-              <metal>
-                <albedo_map>meshes/base/movai-logo.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
         <visual name='light_link_visual'>
@@ -1696,11 +1691,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>1 1 1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>meshes/cart_tag.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
         <enable_wind>false</enable_wind>
