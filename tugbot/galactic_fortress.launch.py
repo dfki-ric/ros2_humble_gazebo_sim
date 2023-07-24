@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, ExecuteProcess, DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, ExecuteProcess, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import EnvironmentVariable, Command, LaunchConfiguration
 
@@ -8,7 +8,6 @@ from launch_ros.actions import Node, SetParameter
 
 def generate_launch_description():
 
-	slam_params_file = LaunchConfiguration('slam_params_file')
 
 	return LaunchDescription([
 
@@ -16,9 +15,6 @@ def generate_launch_description():
 
 		SetEnvironmentVariable(name = "IGN_GAZEBO_RESOURCE_PATH", value = [FindPackageShare('coyote3_description'), "/.."]),
 		SetEnvironmentVariable(name = "IGN_GAZEBO_SYSTEM_PLUGIN_PATH", value = EnvironmentVariable("LD_LIBRARY_PATH")),
-
-		DeclareLaunchArgument('slam_params_file',
-			default_value="/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/mapper_params_online_async.yaml"),
 
 		ExecuteProcess(
 			cmd=["ign gazebo /home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/tugbot_in_warehouse.sdf -r --force-version 6"],
@@ -44,12 +40,11 @@ def generate_launch_description():
 			]
 		),
 		
-		Node(
-			package='slam_toolbox',
-			executable='async_slam_toolbox_node',
-			parameters=[
-				slam_params_file
-			]
+		IncludeLaunchDescription(
+			PythonLaunchDescriptionSource([FindPackageShare('slam_toolbox'),'/launch/online_async_launch.py']),
+			launch_arguments={
+				'slam_params_file': "/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/mapper_params_online_async.yaml"
+			}.items()
 		)
 	])
 
