@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Map1
       Splitter Ratio: 0.36006826162338257
     Tree Height: 787
   - Class: rviz_common/Selection
@@ -81,6 +82,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        map:
+          Value: true
         odom:
           Value: true
         tugbot:
@@ -137,47 +140,48 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        odom:
-          tugbot:
-            tugbot/base_link:
-              {}
-            tugbot/camera_back:
-              tugbot/camera_back/color:
+        map:
+          odom:
+            tugbot:
+              tugbot/base_link:
                 {}
-              tugbot/camera_back/depth:
+              tugbot/camera_back:
+                tugbot/camera_back/color:
+                  {}
+                tugbot/camera_back/depth:
+                  {}
+              tugbot/camera_front:
+                tugbot/camera_front/color:
+                  {}
+                tugbot/camera_front/depth:
+                  {}
+              tugbot/gripper:
+                tugbot/gripper/sensor_contact:
+                  {}
+              tugbot/gripper_hand:
                 {}
-            tugbot/camera_front:
-              tugbot/camera_front/color:
+              tugbot/imu_link:
+                tugbot/imu_link/imu:
+                  {}
+              tugbot/scan_back:
+                tugbot/scan_back/scan_back:
+                  {}
+              tugbot/scan_front:
+                tugbot/scan_front/scan_front:
+                  {}
+              tugbot/scan_omni:
+                tugbot/scan_omni/scan_omni:
+                  {}
+              tugbot/warnign_light:
                 {}
-              tugbot/camera_front/depth:
+              tugbot/wheel_back:
                 {}
-            tugbot/gripper:
-              tugbot/gripper/sensor_contact:
+              tugbot/wheel_front:
                 {}
-            tugbot/gripper_hand:
-              {}
-            tugbot/imu_link:
-              tugbot/imu_link/imu:
+              tugbot/wheel_left:
                 {}
-            tugbot/scan_back:
-              tugbot/scan_back/scan_back:
+              tugbot/wheel_right:
                 {}
-            tugbot/scan_front:
-              tugbot/scan_front/scan_front:
-                {}
-            tugbot/scan_omni:
-              tugbot/scan_omni/scan_omni:
-                {}
-            tugbot/warnign_light:
-              {}
-            tugbot/wheel_back:
-              {}
-            tugbot/wheel_front:
-              {}
-            tugbot/wheel_left:
-              {}
-            tugbot/wheel_right:
-              {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -214,10 +218,31 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map_updates
+      Use Timestamp: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -276,7 +301,7 @@ Visualization Manager:
       Name: Current View
       Near Clip Distance: 0.009999999776482582
       Pitch: 0.7853981852531433
-      Target Frame: <Fixed Frame>
+      Target Frame: tugbot/base_link
       Value: Orbit (rviz)
       Yaw: 0.7853981852531433
     Saved: ~
