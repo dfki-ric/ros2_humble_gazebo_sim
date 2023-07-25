@@ -36,6 +36,8 @@ def generate_launch_description():
 			remappings=[
 				("/model/tugbot/tf", "/tf"),
 				("/model/tugbot/pose", "/tf"),
+				("/model/tugbot/cmd_vel", "/cmd_vel"),
+				("/model/tugbot/odometry", "/odom"),
 				("/world/world_demo/clock", "/clock")
 			]
 		),
@@ -44,6 +46,13 @@ def generate_launch_description():
 			PythonLaunchDescriptionSource([FindPackageShare('slam_toolbox'),'/launch/online_async_launch.py']),
 			launch_arguments={
 				'slam_params_file': "/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/mapper_params_online_async.yaml"
+			}.items()
+		),
+		
+		IncludeLaunchDescription(
+			PythonLaunchDescriptionSource([FindPackageShare('nav2_bringup'),'/launch/navigation_launch.py']),
+			launch_arguments={
+				'params_file': "/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"
 			}.items()
 		)
 	])
