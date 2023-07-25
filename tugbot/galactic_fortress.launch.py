@@ -8,10 +8,18 @@ from launch_ros.actions import Node, SetParameter
 
 def generate_launch_description():
 
+	lifecycle_nodes = [
+		'waypoint_follower',
+		'controller_server',
+		'planner_server',
+		'recoveries_server',
+		'bt_navigator'
+	]
 
 	return LaunchDescription([
 
 		SetParameter(name='use_sim_time', value=True),
+		SetParameter(name='autostart', value=True),
 
 		SetEnvironmentVariable(name = "IGN_GAZEBO_RESOURCE_PATH", value = [FindPackageShare('coyote3_description'), "/.."]),
 		SetEnvironmentVariable(name = "IGN_GAZEBO_SYSTEM_PLUGIN_PATH", value = EnvironmentVariable("LD_LIBRARY_PATH")),
@@ -41,19 +49,56 @@ def generate_launch_description():
 				("/world/world_demo/clock", "/clock")
 			]
 		),
-		
-		IncludeLaunchDescription(
-			PythonLaunchDescriptionSource([FindPackageShare('slam_toolbox'),'/launch/online_async_launch.py']),
-			launch_arguments={
-				'slam_params_file': "/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/mapper_params_online_async.yaml"
-			}.items()
+
+		Node(
+			package='slam_toolbox',
+			executable='async_slam_toolbox_node',
+			parameters=["/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/mapper_params_online_async.yaml"]
 		),
-		
-		IncludeLaunchDescription(
-			PythonLaunchDescriptionSource([FindPackageShare('nav2_bringup'),'/launch/navigation_launch.py']),
-			launch_arguments={
-				'params_file': "/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"
-			}.items()
-		)
+
+		Node(
+			package='nav2_bt_navigator',
+			executable='bt_navigator',
+			name='bt_navigator',
+			parameters=["/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"]
+		),
+
+		Node(
+			package='nav2_planner',
+			executable='planner_server',
+			name='planner_server',
+			parameters=["/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"]
+		),
+
+		Node(
+			package='nav2_waypoint_follower',
+			executable='waypoint_follower',
+			name='waypoint_follower',
+			parameters=["/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"]
+		),
+
+		Node(
+			package='nav2_controller',
+			executable='controller_server',
+			parameters=["/home/dfki.uni-bremen.de/skasperski/Robotics/ignition/tugbot/nav2_params.yaml"]
+		),
+
+		Node(
+			package='nav2_recoveries',
+			executable='recoveries_server',
+			name='recoveries_server',
+
+		),
+
+		Node(
+			package='nav2_lifecycle_manager',
+			executable='lifecycle_manager',
+			name='lifecycle_manager_navigation',
+			output='screen',
+			parameters=[
+				{'node_names': lifecycle_nodes}
+			]
+		),
+
 	])
 
