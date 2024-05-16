@@ -19,14 +19,14 @@ def generate_launch_description():
 				)
 			),
 			launch_arguments={
-				'ign_args': ' -r cave_circuit.sdf',
+				'ign_args': ' -r models/cave_circuit.sdf',
 				'ign_version': '6'
 			}.items()
 		),
 
 		# IGN-ROS-Bridge
 		IncludeLaunchDescription(
-			PythonLaunchDescriptionSource('husky_ros2_bridge_without_joystick.launch.py')
+			PythonLaunchDescriptionSource('launch/husky_ros2_bridge_without_joystick.launch.py')
 		)
 	])
 
