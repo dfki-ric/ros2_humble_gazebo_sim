@@ -11,7 +11,6 @@ def generate_launch_description():
 				'/model/husky/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
 				'/model/husky/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V',
 				'/model/husky/pose@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V',
-                                '/world/gz/model/husky/link/base_link/sensor/front_laser/scan@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan',
 				'/world/gz/model/husky/link/base_link/sensor/front_laser/scan/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked',
 				'/world/gz/clock@rosgraph_msgs/msg/Clock@ignition.msgs.Clock'
 			],
@@ -22,3 +21,5 @@ def generate_launch_description():
 			],
 		),
 	])
+
+

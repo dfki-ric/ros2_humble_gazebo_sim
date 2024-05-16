@@ -26,7 +26,7 @@ def generate_launch_description():
 
 		# IGN-ROS-Bridge
 		IncludeLaunchDescription(
-			PythonLaunchDescriptionSource('ign_bridge.launch.py')
+			PythonLaunchDescriptionSource('husky_ros2_bridge_without_joystick.launch.py')
 		)
 	])
 
