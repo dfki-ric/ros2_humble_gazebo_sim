@@ -19,7 +19,7 @@ def generate_launch_description():
 				)
 			),
 			launch_arguments={
-				'ign_args': ' -r models/cave_circuit.sdf',
+				'ign_args': ' -r models/urban_circuit_practice_03.sdf',
 				'ign_version': '6'
 			}.items()
 		),
