@@ -21,7 +21,8 @@
     <include>
       <uri>model://COSTAR_HUSKY_SENSOR_CONFIG_1</uri>
       <name>husky</name>
-      <pose>20.5 27 7.5 0 0 0</pose>
+      <!--pose>20.5 27 7.5 0 0 0</pose-->
+      <pose>-8.0 -15.0 1.0 0 0 3.14</pose>
     </include>
     <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
     <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>

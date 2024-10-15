@@ -23,6 +23,9 @@ Please export the variable below so that gazebo finds the husky model
 ros2 launch start.launch.py
 
 
+# References
+1) https://app.gazebosim.org/MechaKim2/fuel/worlds/Cave%20Circuit
+2) https://app.gazebosim.org/OpenRobotics/fuel/models/COSTAR_HUSKY_SENSOR_CONFIG_1
 
 
 
