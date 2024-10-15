@@ -11,6 +11,14 @@ from launch.substitutions import Command, FindExecutable, LaunchConfiguration
 from launch.conditions import IfCondition  
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+def load_yaml_file(yaml_file_path):
+    try:
+        with open(yaml_file_path, 'r') as file:
+            return yaml.load(file)
+    except EnvironmentError as e: 
+        print(str(e))
+        return None    
+
 def launch_setup(context, *args, **kwargs):
 
   world_file_name = str(LaunchConfiguration('world_file_name').perform(context))
@@ -36,30 +44,37 @@ def launch_setup(context, *args, **kwargs):
   ign_ros2_bridge_description = IncludeLaunchDescription(
 			PythonLaunchDescriptionSource(bridge_launch_file)
 		)
-
-  joy_node = Node(
-    package='joy',
-    executable='joy_node',
-    name='joy',
-    output='both',
-    #parameters=[joy_config] 
-  )
-
-  cmd_vel_topic_name = '/model/'+robot_name+'/cmd_vel'
-  teleop_twist_joy = Node(
-	package='teleop_twist_joy',
-	executable='teleop_node',
-	remappings=[('/cmd_vel', cmd_vel_topic_name)],
-	parameters=[{
-		"require_enable_button": False,
-		"axis_linear.x"    : 1,
-		"axis_angular.x"   : 0,
-		"scale_linear.x"   : 0.5,
-		"scale_angular.yaw": 0.5
-	}]
-	)
   
   if(IfCondition(LaunchConfiguration('use_joystick')).evaluate(context)):
+
+    joy_config_file = str(LaunchConfiguration('joy_config_file').perform(context))
+    if joy_config_file == "joy_config_file":
+      raise ValueError("Please set the joy_config_file when use_joystick is set to True!")
+
+    joy_config = load_yaml_file(joy_config_file)['joy']['ros__parameters'] 
+
+    joy_node = Node(
+      package='joy',
+      executable='joy_node',
+      name='joy',
+      output='both',
+      parameters=[joy_config] 
+    )
+
+    cmd_vel_topic_name = '/model/'+robot_name+'/cmd_vel'
+    teleop_twist_joy = Node(
+    package='teleop_twist_joy',
+    executable='teleop_node',
+    remappings=[('/cmd_vel', cmd_vel_topic_name)],
+    parameters=[{
+      "require_enable_button": False,
+      "axis_linear.x"    : 1,
+      "axis_angular.x"   : 0,
+      "scale_linear.x"   : 0.5,
+      "scale_angular.yaw": 0.5
+    }]
+    )
+
     return [gazebo_launch_description, ign_ros2_bridge_description, joy_node, teleop_twist_joy]   
 
   return [gazebo_launch_description, ign_ros2_bridge_description]   
@@ -84,6 +99,12 @@ def generate_launch_description():
         "use_joystick",
         default_value="False",
         description="Use a real joystick."
+    ),
+
+    DeclareLaunchArgument(
+        "joy_config_file",
+        default_value="joy_config_file",
+        description="Full path to the joy config"
     ),
 
     OpaqueFunction(function = launch_setup)
