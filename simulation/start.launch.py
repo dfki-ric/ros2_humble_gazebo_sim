@@ -82,7 +82,7 @@ def generate_launch_description():
         
     DeclareLaunchArgument(
         "use_joystick",
-        default_value="false",
+        default_value="False",
         description="Use a real joystick."
     ),
 

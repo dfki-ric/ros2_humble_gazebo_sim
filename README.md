@@ -10,7 +10,7 @@ sudo apt install ros-humble-desktop-full
 
 Please export the variable below so that gazebo finds the husky model
 
-```export IGN_GAZEBO_RESOURCE_PATH=/opt/workspace/src/ros2_ignition/resource:$IGN_GAZEBO_RESOURCE_PATH```
+```export IGN_GAZEBO_RESOURCE_PATH=/path_to/resource:$IGN_GAZEBO_RESOURCE_PATH```
 
 
 # Usage
