@@ -15,9 +15,12 @@ def generate_launch_description():
 				'/world/gz/clock@rosgraph_msgs/msg/Clock@ignition.msgs.Clock'
 			],
 			remappings=[
+				('/model/husky/cmd_vel', '/husky/cmd_vel'),
+				('/model/husky/odometry', '/husky/odometry'),
 				('/model/husky/tf', '/tf'),
 				('/model/husky/pose', '/tf'),
-				('/world/gz/clock', '/clock')
+				('/world/gz/clock', '/clock'),
+                ('/world/gz/model/husky/link/base_link/sensor/front_laser/scan/points', '/husky/scan/points')
 			],
 		),
 	])
