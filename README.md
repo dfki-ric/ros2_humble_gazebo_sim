@@ -6,12 +6,6 @@ if ignition gazebo is not installed, you should install the dull desktop for tes
 sudo apt install ros-humble-desktop-full
 ```
 
-clone this repo to your src folder
-
-```bash
-git clone https://git.hb.dfki.de/mos/husky_gz_sim.git
-```
-
 # Husky
 
 Please export the variable below so that gazebo finds the husky model

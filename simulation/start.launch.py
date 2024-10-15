@@ -37,14 +37,6 @@ def launch_setup(context, *args, **kwargs):
 			PythonLaunchDescriptionSource(bridge_launch_file)
 		)
 
-  rviz_node = Node(
-	package="rviz2",
-	executable="rviz2",
-	name="rviz2",
-	output="log",
-	#arguments=["-d", rviz_config] 
-  )
-
   joy_node = Node(
     package='joy',
     executable='joy_node',
@@ -68,9 +60,9 @@ def launch_setup(context, *args, **kwargs):
 	)
   
   if(IfCondition(LaunchConfiguration('use_joystick')).evaluate(context)):
-    return [gazebo_launch_description, ign_ros2_bridge_description, joy_node, teleop_twist_joy, rviz_node]   
+    return [gazebo_launch_description, ign_ros2_bridge_description, joy_node, teleop_twist_joy]   
 
-  return [gazebo_launch_description, ign_ros2_bridge_description, rviz_node]   
+  return [gazebo_launch_description, ign_ros2_bridge_description]   
   
 def generate_launch_description(): 
        
