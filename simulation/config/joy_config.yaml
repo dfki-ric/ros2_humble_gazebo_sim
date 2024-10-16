@@ -2,6 +2,6 @@
 #FIXME
 joy:
     ros__parameters:
-        device_name: "/dev/input/jsX"
+        dev: "/dev/input/js0"
         deadzone: 0.1
         autorepeat_rate: 20.0

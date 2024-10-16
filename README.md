@@ -2,7 +2,7 @@
 
 if ignition gazebo is not installed, you should install the dull desktop for testing here
 
-```bash
+```
 sudo apt install ros-humble-desktop-full
 ```
 
@@ -10,12 +10,19 @@ sudo apt install ros-humble-desktop-full
 
 Please export the variable below so that gazebo finds the husky model
 
-```export IGN_GAZEBO_RESOURCE_PATH=/path_to/resource:$IGN_GAZEBO_RESOURCE_PATH```
+```
+export IGN_GAZEBO_RESOURCE_PATH=/path_to/resource:$IGN_GAZEBO_RESOURCE_PATH
+```
 
+# Dependencies
+```
+bash install_dependencies.bash
+```
 
 # Usage
+```
 ros2 launch start.launch.py
-
+```
 
 # References
 1) https://app.gazebosim.org/MechaKim2/fuel/worlds/Cave%20Circuit

@@ -61,18 +61,18 @@ def launch_setup(context, *args, **kwargs):
       parameters=[joy_config] 
     )
 
-    cmd_vel_topic_name = '/model/'+robot_name+'/cmd_vel'
+    teleop_twist_config_file = str(LaunchConfiguration('teleop_twist_config_file').perform(context))
+    if teleop_twist_config_file == "teleop_twist_config_file":
+      raise ValueError("Please set the teleop_twist_config_file when use_joystick is set to True!")
+
+    teleop_twist_config = load_yaml_file(teleop_twist_config_file)
+
+    cmd_vel_topic_name = '/'+robot_name+'/cmd_vel'
     teleop_twist_joy = Node(
     package='teleop_twist_joy',
     executable='teleop_node',
     remappings=[('/cmd_vel', cmd_vel_topic_name)],
-    parameters=[{
-      "require_enable_button": False,
-      "axis_linear.x"    : 1,
-      "axis_angular.x"   : 0,
-      "scale_linear.x"   : 0.5,
-      "scale_angular.yaw": 0.5
-    }]
+    parameters=[teleop_twist_config]
     )
 
     return [gazebo_launch_description, ign_ros2_bridge_description, joy_node, teleop_twist_joy]   
@@ -86,13 +86,13 @@ def generate_launch_description():
     DeclareLaunchArgument(
         "robot_name",
         default_value="husky",
-        description="Name of the robot."
+        description="Options: husky"
     ),
         
     DeclareLaunchArgument(
         "world_file_name",
         default_value="cave_circuit",
-        description="Name of the world file."
+        description="Options: cave_circuit, urban_circuit_practice_03"
     ),
         
     DeclareLaunchArgument(
@@ -105,6 +105,12 @@ def generate_launch_description():
         "joy_config_file",
         default_value="joy_config_file",
         description="Full path to the joy config"
+    ),
+
+    DeclareLaunchArgument(
+        "teleop_twist_config_file",
+        default_value="teleop_twist_config_file",
+        description="Full path to the teleop twist joy config"
     ),
 
     OpaqueFunction(function = launch_setup)
