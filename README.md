@@ -1,28 +1,75 @@
-# ros2_ingnition
+# ROS 2 Humble Test Environment with Gazebo Fortress
 
-if ignition gazebo is not installed, you should install the dull desktop for testing here
+This provides instructions for setting up a test environment using **Gazebo Fortress** and **ROS 2 Humble**. The setup includes configurations for using the Husky robot and ensures that the necessary resources are in place for smooth operation.
 
+## Prerequisites
+
+### 1. Install ROS2 Humble
+Ensure you have **ROS2 Humble** installed on your system. Follow the official page at [ROS2 Humble Debian Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)
+
+### 2. Install Gazebo Fortress
+If you need to install **Gazebo Fortress**, follow the instructions provided on the official page at [Gazebo Installation](https://gazebosim.org/docs/latest/ros_installation/).
+
+### 3. Husky Configuration
+To ensure that Gazebo can find the robot model, you need to export the following environment variable. Replace /path/to/ with the actual **complete** path where you clone the repository `ros2_humble_gazebo_sim`. Add this command to your terminal:
 ```
-sudo apt install ros-humble-desktop-full
+export IGN_GAZEBO_RESOURCE_PATH=/path/to/ros2_humble_gazebo_sim/resource:$IGN_GAZEBO_RESOURCE_PATH
 ```
 
-# Husky
-
-Please export the variable below so that gazebo finds the husky model
-
+### 4. Get ros2_humble_gazebo_sim
+You can clone the repo `ros2_humble_gazebo_sim` anywhere in your system.
 ```
-export IGN_GAZEBO_RESOURCE_PATH=/path_to/resource:$IGN_GAZEBO_RESOURCE_PATH
-```
-
-# Dependencies
-```
+git clone https://github.com/dfki-ric/ros2_humble_gazebo_sim.git
+cd ros2_humble_gazebo_sim
 bash install_dependencies.bash
 ```
 
-# Usage
+### 5. Usage
 ```
-ros2 launch start.launch.py
+ros2 launch start.launch.py --show-args
+Arguments (pass arguments as '<name>:=<value>'):
+
+    'robot_name':
+        Options: husky
+        (default: 'husky')
+
+    'world_file_name':
+        Options: cave_circuit, urban_circuit_practice_03
+        (default: 'cave_circuit')
+
+    'use_joystick':
+        Use a real joystick.
+        (default: 'False')
+
+    'joy_config_file':
+        Full path to the joy config
+        (default: 'joy_config_file')
+
+    'teleop_twist_config_file':
+        Full path to the teleop twist joy config
+        (default: 'teleop_twist_config_file')
+
 ```
+#### Cave Circuit
+![CaveCircuit](simulation/figures/cave_circuit.png)
+
+#### Urban Circuit Practice 03
+![UrbanCircuit](simulation/figures/urban_circuit.png)
+
+#### Available Topics
+
+```
+ros2 topic list
+
+/clock
+/husky/cmd_vel
+/husky/odometry
+/husky/scan/points
+/parameter_events
+/rosout
+/tf
+```
+
 
 # References
 1) https://app.gazebosim.org/MechaKim2/fuel/worlds/Cave%20Circuit
