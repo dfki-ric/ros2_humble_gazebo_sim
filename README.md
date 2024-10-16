@@ -50,6 +50,19 @@ Arguments (pass arguments as '<name>:=<value>'):
         (default: 'teleop_twist_config_file')
 
 ```
+
+#### Robot Control
+
+You can use the `Teleop` plugin of Gazebo for sending velocity commands to the robot. Click on the three dots in top-right corner of Gazebo window and search for `Teleop`. Select the plugin and adjust the values as shown in figure.
+
+![GazeboTeleop](simulation/figures/gazebo_teleop.png)
+
+Alternative to the `Teleop` plugin, you can use a joystick for moving the robot. For this, set the argument `use_joystick:=True`. Adjust the config files in the folder `/config` of the `ros2_humble_gazebo_sim` package from Step 3. Provide the full paths to the arguments `joy_config_file` and `teleop_twist_config_file` as shown below:
+
+```
+ros2 launch start.launch.py use_joystick:=True joy_config_file:=/your_ros2_workspace/ros2_humble_gazebo_sim/simulation/config/joy_config.yaml teleop_twist_config_file:=/your_ros2_workspace/ros2_humble_gazebo_sim/simulation/config/teleop_twist_config.yaml
+```
+
 #### Cave Circuit
 ![CaveCircuit](simulation/figures/cave_circuit.png)
 
