@@ -86,7 +86,8 @@ ros2 topic list
 
 # References
 1) https://app.gazebosim.org/MechaKim2/fuel/worlds/Cave%20Circuit
-2) https://app.gazebosim.org/OpenRobotics/fuel/models/COSTAR_HUSKY_SENSOR_CONFIG_1
+2) https://app.gazebosim.org/OpenRobotics/fuel/worlds/Urban%20Circuit%20Practice%2003
+3) https://app.gazebosim.org/OpenRobotics/fuel/models/COSTAR_HUSKY_SENSOR_CONFIG_1
 
 
 
